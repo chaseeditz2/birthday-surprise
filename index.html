@@ -1,69 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>A Little Surprise ❤️</title>
+    <title>For ZAZAS ❤️</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- =========================================
-         PROGRESS
-    ========================================== -->
+    <!-- Floating background particles -->
+    <div id="particles"></div>
 
-    <div class="progress-container">
-        <div class="progress">
-
-            <span id="progress-welcome">🎁</span>
-            <span>—</span>
-
-            <span id="progress-instructions">📖</span>
-            <span>—</span>
-
-            <span id="progress-churrasco">🔥</span>
-            <span>—</span>
-
-            <span id="progress-balloons">🎈</span>
-            <span>—</span>
-
-            <span id="progress-letter">💌</span>
-            <span>—</span>
-
-            <span id="progress-hidden">🔎</span>
-            <span>—</span>
-
-            <span id="progress-wish">🌟</span>
-
-        </div>
+    <!-- Progress -->
+    <div class="progress">
+        <span class="progress-dot active">🎁</span>
+        <span class="progress-line"></span>
+        <span class="progress-dot">📖</span>
+        <span class="progress-line"></span>
+        <span class="progress-dot">🔥</span>
+        <span class="progress-line"></span>
+        <span class="progress-dot">🎈</span>
+        <span class="progress-line"></span>
+        <span class="progress-dot">💌</span>
+        <span class="progress-line"></span>
+        <span class="progress-dot">🔎</span>
+        <span class="progress-line"></span>
+        <span class="progress-dot">🌟</span>
     </div>
 
 
-    <!-- =========================================
-         WELCOME
-    ========================================== -->
+    <!-- ========================= -->
+    <!-- WELCOME -->
+    <!-- ========================= -->
 
     <section id="welcome" class="screen active">
 
-        <div class="card">
+        <div class="card welcome-card">
 
-            <div class="big-icon">🎁</div>
+            <div class="gift" onclick="openGift()">
+                <div class="gift-lid"></div>
+                <div class="gift-box">
+                    <div class="gift-ribbon vertical"></div>
+                    <div class="gift-ribbon horizontal"></div>
+                </div>
+            </div>
 
-            <h1>A Little Surprise</h1>
+            <p class="tiny-text">👀 Você encontrou...</p>
+
+            <h1>Bem-vindo!</h1>
+
+            <h2>Hey ZAZAS! ❤️</h2>
 
             <p>
-                I made something special for you.
+                You weren't supposed to find this...
             </p>
 
-            <p class="small-text">
-                There's a little adventure waiting inside...
-            </p>
-
-            <button onclick="showScreen('instructions')">
-                Open Your Surprise ✨
+            <button onclick="openGift()">
+                🎁 Open the gift
             </button>
 
         </div>
@@ -71,97 +68,44 @@
     </section>
 
 
-    <!-- =========================================
-         INSTRUCTIONS
-    ========================================== -->
+    <!-- ========================= -->
+    <!-- INSTRUCTIONS -->
+    <!-- ========================= -->
 
     <section id="instructions" class="screen">
 
         <div class="card">
 
-            <div class="big-icon">📖</div>
+            <div class="emoji-big">📖</div>
 
-            <h1>How This Works</h1>
+            <h1>YOUR MISSION</h1>
+
+            <h2>Boa sorte! 🇧🇷</h2>
 
             <p>
-                Before you begin, here's what you'll be doing!
+                There is a surprise waiting for you...
             </p>
 
+            <p>
+                But you're going to have to earn it. 😈
+            </p>
 
-            <div class="instructions">
+            <div class="mission-list">
 
-                <div class="instruction">
-                    <span>🔥</span>
-
-                    <div>
-                        <strong>Build Your Churrasco</strong>
-
-                        <p>
-                            Create your perfect Brazilian
-                            barbecue plate.
-                        </p>
-                    </div>
-                </div>
-
-
-                <div class="instruction">
-                    <span>🎈</span>
-
-                    <div>
-                        <strong>Pop the Balloons</strong>
-
-                        <p>
-                            Pop all the balloons to move on.
-                        </p>
-                    </div>
-                </div>
-
-
-                <div class="instruction">
-                    <span>💌</span>
-
-                    <div>
-                        <strong>Read Your Letter</strong>
-
-                        <p>
-                            There's a personal message waiting
-                            for you.
-                        </p>
-                    </div>
-                </div>
-
-
-                <div class="instruction">
-                    <span>🔎</span>
-
-                    <div>
-                        <strong>Find the Hidden Message</strong>
-
-                        <p>
-                            Something is hiding somewhere...
-                        </p>
-                    </div>
-                </div>
-
-
-                <div class="instruction">
-                    <span>🌟</span>
-
-                    <div>
-                        <strong>Make a Wish</strong>
-
-                        <p>
-                            Finish your little adventure
-                            with a wish.
-                        </p>
-                    </div>
-                </div>
+                <div>🔥 Build your churrasco</div>
+                <div>🎈 Pop 10 balloons</div>
+                <div>💌 Read a letter</div>
+                <div>🔎 Find the secret</div>
+                <div>🌟 Make a wish</div>
 
             </div>
 
+            <p class="highlight">
+                Think you can do it?
+            </p>
 
             <button onclick="showScreen('churrasco')">
-                I'm Ready! 🔥
+                🇧🇷 Bora começar!
             </button>
 
         </div>
@@ -169,215 +113,141 @@
     </section>
 
 
-    <!-- =========================================
-         CHURRASCO BUILDER
-    ========================================== -->
+    <!-- ========================= -->
+    <!-- CHURRASCO -->
+    <!-- ========================= -->
 
     <section id="churrasco" class="screen">
 
         <div class="card churrasco-card">
 
-            <div class="big-icon">🔥</div>
+            <div class="emoji-big">🔥</div>
 
-            <h1>Build Your Churrasco</h1>
+            <h1>Bora fazer um churrasco!</h1>
 
             <p>
-                Put together your perfect Brazilian barbecue!
+                Build your perfect Brazilian plate. 🇧🇷
             </p>
 
+            <div class="grill">
 
-            <!-- PLATE -->
+                <div class="smoke smoke1">💨</div>
+                <div class="smoke smoke2">💨</div>
+                <div class="smoke smoke3">💨</div>
 
-            <div class="plate-area">
+                <div class="grill-top">
+                    <span>🔥</span>
+                    <span>🔥</span>
+                    <span>🔥</span>
+                </div>
+
+                <div class="grill-body">
+                    <span>CHURRASCO</span>
+                </div>
+
+            </div>
+
+
+            <h3>🥩 Escolha suas carnes</h3>
+
+            <div class="food-grid">
+
+                <button class="food-btn" onclick="addFood('🥩', 'Picanha')">
+                    🥩
+                    <span>Picanha</span>
+                </button>
+
+                <button class="food-btn" onclick="addFood('🥩', 'Fraldinha')">
+                    🥩
+                    <span>Fraldinha</span>
+                </button>
+
+                <button class="food-btn" onclick="addFood('🌭', 'Linguiça')">
+                    🌭
+                    <span>Linguiça</span>
+                </button>
+
+                <button class="food-btn" onclick="addFood('🍗', 'Frango')">
+                    🍗
+                    <span>Frango</span>
+                </button>
+
+            </div>
+
+
+            <h3>🧀 Extras</h3>
+
+            <div class="food-grid">
+
+                <button class="food-btn" onclick="addFood('🧀', 'Queijo Coalho')">
+                    🧀
+                    <span>Queijo Coalho</span>
+                </button>
+
+                <button class="food-btn" onclick="addFood('🥖', 'Pão de Alho')">
+                    🥖
+                    <span>Pão de Alho</span>
+                </button>
+
+                <button class="food-btn" onclick="addFood('🍍', 'Abacaxi Grelhado')">
+                    🍍
+                    <span>Abacaxi Grelhado</span>
+                </button>
+
+            </div>
+
+
+            <h3>🍚 Acompanhamentos</h3>
+
+            <div class="food-grid">
+
+                <button class="food-btn" onclick="addFood('🍚', 'Arroz')">
+                    🍚
+                    <span>Arroz</span>
+                </button>
+
+                <button class="food-btn" onclick="addFood('🫘', 'Feijão')">
+                    🫘
+                    <span>Feijão</span>
+                </button>
+
+                <button class="food-btn" onclick="addFood('🥗', 'Vinagrete')">
+                    🥗
+                    <span>Vinagrete</span>
+                </button>
+
+                <button class="food-btn" onclick="addFood('🟤', 'Farofa')">
+                    🟤
+                    <span>Farofa</span>
+                </button>
+
+            </div>
+
+
+            <div class="plate-section">
+
+                <h2>🍽️ Your Plate</h2>
 
                 <div id="plate" class="plate">
-
-                    <div class="plate-center">
-                        🍽️
-                    </div>
-
+                    <span class="plate-placeholder">
+                        Escolha alguma comida! 👀
+                    </span>
                 </div>
 
             </div>
 
 
-            <!-- MEATS -->
+            <div id="food-message" class="result-message"></div>
 
-            <div class="food-section">
 
-                <h2>🥩 Meats</h2>
+            <div class="button-row">
 
-                <div class="food-choices">
-
-                    <button
-                        class="food-choice"
-                        onclick="addFood('🥩', 'Picanha')">
-
-                        🥩
-                        <span>Picanha</span>
-
-                    </button>
-
-
-                    <button
-                        class="food-choice"
-                        onclick="addFood('🥩', 'Fraldinha')">
-
-                        🥩
-                        <span>Fraldinha</span>
-
-                    </button>
-
-
-                    <button
-                        class="food-choice"
-                        onclick="addFood('🌭', 'Linguiça')">
-
-                        🌭
-                        <span>Linguiça</span>
-
-                    </button>
-
-
-                    <button
-                        class="food-choice"
-                        onclick="addFood('🍗', 'Frango')">
-
-                        🍗
-                        <span>Frango</span>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- EXTRAS -->
-
-            <div class="food-section">
-
-                <h2>🧀 Extras</h2>
-
-                <div class="food-choices">
-
-                    <button
-                        class="food-choice"
-                        onclick="addFood('🧀', 'Queijo Coalho')">
-
-                        🧀
-                        <span>Queijo Coalho</span>
-
-                    </button>
-
-
-                    <button
-                        class="food-choice"
-                        onclick="addFood('🍞', 'Garlic Bread')">
-
-                        🍞
-                        <span>Garlic Bread</span>
-
-                    </button>
-
-
-                    <button
-                        class="food-choice"
-                        onclick="addFood('🍍', 'Grilled Pineapple')">
-
-                        🍍
-                        <span>Grilled Pineapple</span>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <!-- SIDES -->
-
-            <div class="food-section">
-
-                <h2>🍚 Sides</h2>
-
-                <div class="food-choices">
-
-                    <button
-                        class="food-choice"
-                        onclick="addFood('🍚', 'Rice')">
-
-                        🍚
-                        <span>Rice</span>
-
-                    </button>
-
-
-                    <button
-                        class="food-choice"
-                        onclick="addFood('🫘', 'Feijão')">
-
-                        🫘
-                        <span>Feijão</span>
-
-                    </button>
-
-
-                    <button
-                        class="food-choice"
-                        onclick="addFood('🥗', 'Vinagrete')">
-
-                        🥗
-                        <span>Vinagrete</span>
-
-                    </button>
-
-
-                    <button
-                        class="food-choice"
-                        onclick="addFood('🌾', 'Farofa')">
-
-                        🌾
-                        <span>Farofa</span>
-
-                    </button>
-
-                </div>
-
-            </div>
-
-
-            <div class="churrasco-actions">
-
-                <button
-                    class="secondary-button"
-                    onclick="clearPlate()">
-
-                    Clear Plate
-
+                <button class="secondary-btn" onclick="clearPlate()">
+                    🗑️ Clear
                 </button>
 
-
-                <button
-                    onclick="finishChurrasco()">
-
-                    Churrasco Complete! 🎈
-
-                </button>
-
-            </div>
-
-
-            <div id="churrasco-result" class="result-message">
-
-                <h2>🔥 THAT'S A PLATE!</h2>
-
-                <p>
-                    Now THAT looks like a proper churrasco.
-                </p>
-
-                <button onclick="showScreen('balloons')">
-                    Time for Balloons! 🎈
+                <button onclick="finishChurrasco()">
+                    🔥 Tá pronto!
                 </button>
 
             </div>
@@ -387,155 +257,57 @@
     </section>
 
 
-    <!-- =========================================
-         BALLOON GAME
-    ========================================== -->
+    <!-- ========================= -->
+    <!-- BALLOONS -->
+    <!-- ========================= -->
 
-    <section id="balloons" class="screen">
+    <section id="balloons" class="screen balloon-screen">
 
-        <div class="card balloon-card">
+        <div class="balloon-header">
 
-            <div class="big-icon">🎈</div>
-
-            <h1>Pop the Balloons!</h1>
+            <h1>🎈 Estoure os balões!</h1>
 
             <p>
-                Pop all 10 balloons to continue!
+                Pop all 10!
             </p>
 
-
-            <div class="balloon-counter">
-
-                Popped:
-                <strong id="balloon-count">0</strong>
-                / 10
-
-            </div>
-
-
-            <div id="balloon-game">
-
-                <button class="balloon balloon-1"
-                    onclick="popBalloon(this)">
-                    🎈
-                </button>
-
-                <button class="balloon balloon-2"
-                    onclick="popBalloon(this)">
-                    🎈
-                </button>
-
-                <button class="balloon balloon-3"
-                    onclick="popBalloon(this)">
-                    🎈
-                </button>
-
-                <button class="balloon balloon-4"
-                    onclick="popBalloon(this)">
-                    🎈
-                </button>
-
-                <button class="balloon balloon-5"
-                    onclick="popBalloon(this)">
-                    🎈
-                </button>
-
-                <button class="balloon balloon-6"
-                    onclick="popBalloon(this)">
-                    🎈
-                </button>
-
-                <button class="balloon balloon-7"
-                    onclick="popBalloon(this)">
-                    🎈
-                </button>
-
-                <button class="balloon balloon-8"
-                    onclick="popBalloon(this)">
-                    🎈
-                </button>
-
-                <button class="balloon balloon-9"
-                    onclick="popBalloon(this)">
-                    🎈
-                </button>
-
-                <button class="balloon balloon-10"
-                    onclick="popBalloon(this)">
-                    🎈
-                </button>
-
-            </div>
-
-
-            <div id="balloon-complete" class="result-message">
-
-                <h2>🎉 YOU DID IT!</h2>
-
-                <p>
-                    You popped every single balloon!
-                </p>
-
-                <button onclick="showScreen('letter')">
-                    I Have Something For You 💌
-                </button>
-
+            <div id="balloon-counter">
+                0 / 10
             </div>
 
         </div>
 
-    </section>
+
+        <div id="balloon-area">
+
+            <button class="balloon balloon-red" onclick="popBalloon(this)">🎈</button>
+            <button class="balloon balloon-blue" onclick="popBalloon(this)">🎈</button>
+            <button class="balloon balloon-yellow" onclick="popBalloon(this)">🎈</button>
+            <button class="balloon balloon-green" onclick="popBalloon(this)">🎈</button>
+            <button class="balloon balloon-pink" onclick="popBalloon(this)">🎈</button>
+            <button class="balloon balloon-purple" onclick="popBalloon(this)">🎈</button>
+            <button class="balloon balloon-orange" onclick="popBalloon(this)">🎈</button>
+            <button class="balloon balloon-cyan" onclick="popBalloon(this)">🎈</button>
+            <button class="balloon balloon-red" onclick="popBalloon(this)">🎈</button>
+            <button class="balloon balloon-yellow" onclick="popBalloon(this)">🎈</button>
+
+        </div>
 
 
-    <!-- =========================================
-         LETTER
-    ========================================== -->
+        <div id="balloon-complete" class="completion-box hidden">
 
-    <section id="letter" class="screen">
+            <div class="emoji-big">🎉</div>
 
-        <div class="card letter-card">
+            <h1>BOOOOOOM!</h1>
 
-            <div class="big-icon">💌</div>
+            <h2>Você conseguiu!</h2>
 
-            <h1>A Letter For You</h1>
+            <p>
+                10/10 balloons popped!
+            </p>
 
-
-            <div class="letter">
-
-                <p>Dear You,</p>
-
-
-                <p>
-                    I wanted to make something a little different
-                    for you instead of just sending a normal message.
-                </p>
-
-
-                <p>
-                    You mean a lot to me, and I hope this little
-                    surprise makes you smile.
-                </p>
-
-
-                <p>
-                    Thank you for being you. ❤️
-                </p>
-
-
-                <p>
-                    I hope you know how appreciated you are.
-                </p>
-
-
-                <p class="signature">
-                    — Chase ❤️
-                </p>
-
-            </div>
-
-
-            <button onclick="showScreen('hidden')">
-                There's More... 👀
+            <button onclick="showScreen('letter')">
+                💌 Next surprise
             </button>
 
         </div>
@@ -543,68 +315,76 @@
     </section>
 
 
-    <!-- =========================================
-         HIDDEN MESSAGE
-    ========================================== -->
+    <!-- ========================= -->
+    <!-- LETTER -->
+    <!-- ========================= -->
 
-    <section id="hidden" class="screen">
+    <section id="letter" class="screen">
 
-        <div class="card hidden-card">
+        <div class="letter-scene">
 
-            <div class="big-icon">🔎</div>
+            <div id="envelope" class="envelope" onclick="openLetter()">
 
-            <h1>Something Is Hidden...</h1>
+                <div class="envelope-back"></div>
 
-            <p>
-                There's a secret message somewhere on this page.
-            </p>
+                <div class="envelope-front"></div>
 
-            <p class="small-text">
-                Look carefully. 👀
-            </p>
+                <div class="envelope-flap"></div>
 
-
-            <div class="hidden-area">
-
-                <span class="decoration">✨</span>
-
-                <span class="decoration">🌸</span>
-
-                <span class="decoration">⭐</span>
-
-
-                <button
-                    class="secret-button"
-                    onclick="findSecret()">
-
-                    💖
-
-                </button>
-
-
-                <span class="decoration">🎀</span>
-
-                <span class="decoration">✨</span>
+                <div class="heart-seal">
+                    ❤️
+                </div>
 
             </div>
 
 
-            <div id="secret-message" class="secret-message">
+            <p id="envelope-text">
+                💌 Uma mensagem para você...
+            </p>
 
-                <h2>You Found It! 💖</h2>
+
+            <div id="letter-paper" class="letter-paper hidden">
+
+                <div class="paper-decoration">
+                    ❤️ 🇧🇷 ❤️
+                </div>
+
+                <h1>For ZAZAS</h1>
 
                 <p>
-                    You're pretty awesome, you know that?
+                    Hey ZAZAS,
                 </p>
 
                 <p>
-                    I hope you never forget how much you mean
-                    to the people who care about you.
+                    Chaseuu here! I know we are long-distance friends,
+                    and I know it's your birthday, so I wanted to make
+                    you this letter. :)
                 </p>
 
+                <p>
+                    I know we haven't known each other for very long,
+                    and our first conversation was drama, but ZAZAS,
+                    you are so freaking awesome!
+                </p>
 
-                <button onclick="showScreen('wish')">
-                    Continue to the Final Surprise 🌟
+                <p>
+                    I appreciate everything you do in R22 and stuff.
+                    It is really, really awesome, and I am so happy
+                    to call you a friend.
+                </p>
+
+                <p>
+                    Happy Birthday, man!
+                    I hope you have a great day! 🎉
+                </p>
+
+                <p class="signature">
+                    Love,<br>
+                    Chaseuu! ❤️
+                </p>
+
+                <button onclick="showScreen('hidden')">
+                    🔎 There's something else...
                 </button>
 
             </div>
@@ -614,121 +394,172 @@
     </section>
 
 
-    <!-- =========================================
-         MAKE A WISH
-    ========================================== -->
+    <!-- ========================= -->
+    <!-- HIDDEN MESSAGE -->
+    <!-- ========================= -->
 
-    <section id="wish" class="screen wish-screen">
+    <section id="hidden" class="screen">
 
-        <div class="stars">
+        <div class="card secret-card">
 
-            <span>✦</span>
-            <span>✧</span>
-            <span>✦</span>
-            <span>✧</span>
-            <span>✦</span>
-            <span>✧</span>
-            <span>✦</span>
-            <span>✧</span>
+            <div class="secret-icon" onclick="findSecret()">
+                ❤️
+            </div>
+
+            <h1>Hmm...</h1>
+
+            <p>
+                Something feels a little suspicious here. 👀
+            </p>
+
+            <p>
+                Maybe there's something hidden...
+            </p>
+
+            <button onclick="findSecret()">
+                🔎 Search for the secret
+            </button>
+
+
+            <div id="secret-message" class="secret-message hidden">
+
+                <div class="emoji-big">
+                    💌
+                </div>
+
+                <h2>VOCÊ ENCONTROU!</h2>
+
+                <p class="from">
+                    From Ayato:
+                </p>
+
+                <p>
+                    Yes, you're far away, but you always stay strong.
+                    You always stay on the friendly side, and I will
+                    always stay on the good side.
+                </p>
+
+                <p>
+                    Stay strong, and happy birthday! ❤️
+                </p>
+
+                <button onclick="showScreen('wish')">
+                    🌟 One last thing...
+                </button>
+
+            </div>
 
         </div>
 
+    </section>
 
-        <div class="card wish-card">
 
-            <div class="big-icon">🌟</div>
+    <!-- ========================= -->
+    <!-- WISH -->
+    <!-- ========================= -->
 
-            <h1>Make a Wish</h1>
+    <section id="wish" class="screen wish-screen">
+
+        <div id="wish-stars"></div>
+
+        <div class="wish-content">
+
+            <div class="emoji-big">
+                🌌
+            </div>
+
+            <h1>Faça um pedido.</h1>
 
             <p>
-                Close your eyes for a moment.
+                Close your eyes...
             </p>
 
             <p>
                 Think of something you really want.
             </p>
 
-            <p class="small-text">
-                When you're ready, click the star.
+            <p>
+                When you're ready...
             </p>
 
-
-            <button
-                id="wish-button"
-                class="wish-button"
-                onclick="makeWish()">
-
+            <div class="wish-star" onclick="makeWish()">
                 ⭐
-
-            </button>
-
-
-            <div id="wish-result">
-
-                <h2>✨ I Hope It Comes True ✨</h2>
-
-                <p>
-                    Whatever you wished for,
-                    I hope it comes true.
-                </p>
-
-
-                <button onclick="showScreen('final')">
-                    One Last Thing... 🎁
-                </button>
-
             </div>
+
+            <p class="click-text">
+                ✨ Click the star ✨
+            </p>
 
         </div>
 
     </section>
 
 
-    <!-- =========================================
-         FINAL SURPRISE
-    ========================================== -->
+    <!-- ========================= -->
+    <!-- FINAL -->
+    <!-- ========================= -->
 
     <section id="final" class="screen final-screen">
 
-        <div id="confetti-container"></div>
+        <div id="confetti"></div>
 
+        <div class="final-content">
 
-        <div class="card">
+            <div class="final-fireworks">
+                🎆 🎇 🎆
+            </div>
 
-            <div class="big-icon">🎉</div>
+            <div class="emoji-big">
+                🎉
+            </div>
 
-            <h1>You Made It!</h1>
+            <h1>SURPRESA!</h1>
 
-            <p>
-                And look at that beautiful churrasco! 🔥
+            <h2>Parabéns, ZAZAS! 🇧🇷❤️</h2>
+
+            <p class="final-intro">
+                Você conseguiu chegar até o fim!
             </p>
 
+            <div class="final-message">
 
-            <div class="final-plate">
+                <p>
+                    I hope this little surprise made your birthday
+                    just a little more special. ❤️
+                </p>
 
-                <div id="final-food">
-                    🍽️
+                <p>
+                    Even though we're far apart, I'm really happy
+                    that I got to know you and call you my friend.
+                </p>
+
+                <p>
+                    Have an amazing birthday, man!
+                </p>
+
+                <div class="final-love">
+                    ❤️ 🇧🇷 ❤️
+                </div>
+
+                <p class="final-signature">
+                    — Chaseuu
+                </p>
+
+            </div>
+
+
+            <div class="final-food">
+
+                <h3>🔥 Your Churrasco</h3>
+
+                <div id="final-food-plate">
                 </div>
 
             </div>
 
 
-            <h2>❤️ I Hope You Had Fun ❤️</h2>
-
-
-            <p>
-                I hope this little surprise made your day
-                just a little brighter.
-            </p>
-
-
-            <p class="small-text">
-                You deserve all the happiness in the world.
-            </p>
-
-
             <button onclick="restartExperience()">
-                Experience It Again 🔄
+                🔄 Do it again
             </button>
 
         </div>
@@ -736,11 +567,8 @@
     </section>
 
 
-    <!-- =========================================
-         JAVASCRIPT
-    ========================================== -->
-
     <script src="script.js"></script>
 
 </body>
+
 </html>
