@@ -1,110 +1,128 @@
-/* =========================================
-   WEBSITE NAVIGATION
-========================================= */
+/* ================================= */
+/* ZAZAS SURPRISE EXPERIENCE ❤️ */
+/* ================================= */
 
-function showScreen(screenId) {
 
-    const screens = document.querySelectorAll(".screen");
+/* ================================= */
+/* SCREEN SYSTEM */
+/* ================================= */
+
+const screens = [
+    "welcome",
+    "instructions",
+    "churrasco",
+    "balloons",
+    "letter",
+    "hidden",
+    "wish",
+    "final"
+];
+
+function showScreen(id) {
 
     screens.forEach(screen => {
-        screen.classList.remove("active");
+
+        const element = document.getElementById(screen);
+
+        if (element) {
+            element.classList.remove("active");
+        }
+
     });
 
-    const selectedScreen = document.getElementById(screenId);
 
-    if (selectedScreen) {
-        selectedScreen.classList.add("active");
+    const selected = document.getElementById(id);
+
+    if (selected) {
+        selected.classList.add("active");
     }
+
+
+    updateProgress(id);
+
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
 
-    updateProgress(screenId);
+
+    if (id === "wish") {
+        createWishStars();
+    }
+
+
+    if (id === "final") {
+        prepareFinalScreen();
+    }
+
 }
 
 
-/* =========================================
-   PROGRESS BAR
-========================================= */
+/* ================================= */
+/* PROGRESS */
+/* ================================= */
 
-function updateProgress(screenId) {
+function updateProgress(current) {
 
-    const progressMap = {
-        welcome: "progress-welcome",
-        instructions: "progress-instructions",
-        churrasco: "progress-churrasco",
-        balloons: "progress-balloons",
-        letter: "progress-letter",
-        hidden: "progress-hidden",
-        wish: "progress-wish"
-    };
+    const dots = document.querySelectorAll(".progress-dot");
 
-    Object.values(progressMap).forEach(id => {
+    const index = screens.indexOf(current);
 
-        const element = document.getElementById(id);
+    dots.forEach((dot, i) => {
 
-        if (element) {
-            element.classList.remove("completed");
+        dot.classList.remove("active");
+
+        if (i <= index && i < dots.length) {
+            dot.classList.add("active");
         }
 
     });
 
-    const order = [
-        "welcome",
-        "instructions",
-        "churrasco",
-        "balloons",
-        "letter",
-        "hidden",
-        "wish"
-    ];
-
-    const currentIndex = order.indexOf(screenId);
-
-    order.forEach((screen, index) => {
-
-        if (index <= currentIndex) {
-
-            const element =
-                document.getElementById(progressMap[screen]);
-
-            if (element) {
-                element.classList.add("completed");
-            }
-
-        }
-
-    });
 }
 
 
-/* =========================================
-   CHURRASCO BUILDER
-========================================= */
+/* ================================= */
+/* WELCOME */
+/* ================================= */
+
+function openGift() {
+
+    const gift = document.querySelector(".gift");
+
+    if (gift) {
+
+        gift.style.animation = "none";
+
+        gift.style.transform =
+            "scale(1.25) rotate(5deg)";
+
+    }
+
+
+    createConfetti(35);
+
+    setTimeout(() => {
+
+        showScreen("instructions");
+
+    }, 700);
+
+}
+
+
+/* ================================= */
+/* CHURRASCO */
+/* ================================= */
 
 let selectedFoods = [];
 
-const foodPositions = [
-    { left: "20%", top: "25%" },
-    { left: "40%", top: "18%" },
-    { left: "60%", top: "28%" },
-    { left: "25%", top: "50%" },
-    { left: "50%", top: "48%" },
-    { left: "70%", top: "50%" },
-    { left: "35%", top: "70%" },
-    { left: "60%", top: "72%" }
-];
-
-
 function addFood(emoji, name) {
 
-    if (selectedFoods.length >= 8) {
+    if (selectedFoods.length >= 12) {
 
-        alert(
-            "Your plate is full! 😭🔥\n\n" +
-            "You already have enough food for a feast!"
+        showFoodMessage(
+            "😳 Nossa! Your plate is FULL!"
         );
 
         return;
@@ -118,14 +136,53 @@ function addFood(emoji, name) {
 
 
     renderPlate();
+
+
+    showFoodMessage(
+        `🔥 ${name}! Boa escolha! 🇧🇷`
+    );
+
+
+    const buttons =
+        document.querySelectorAll(".food-btn");
+
+    buttons.forEach(button => {
+
+        if (button.innerText.includes(name)) {
+
+            button.style.transform =
+                "scale(1.08)";
+
+            setTimeout(() => {
+
+                button.style.transform =
+                    "";
+
+            }, 250);
+
+        }
+
+    });
+
 }
 
 
 function renderPlate() {
 
-    const plate = document.getElementById("plate");
+    const plate =
+        document.getElementById("plate");
 
-    if (!plate) {
+    if (!plate) return;
+
+
+    if (selectedFoods.length === 0) {
+
+        plate.innerHTML = `
+            <span class="plate-placeholder">
+                Escolha alguma comida! 👀
+            </span>
+        `;
+
         return;
     }
 
@@ -133,33 +190,33 @@ function renderPlate() {
     plate.innerHTML = "";
 
 
-    const center = document.createElement("div");
+    selectedFoods.forEach(food => {
 
-    center.className = "plate-center";
-
-    center.innerText = "🍽️";
-
-    plate.appendChild(center);
-
-
-    selectedFoods.forEach((food, index) => {
-
-        const foodElement =
+        const item =
             document.createElement("span");
 
-        foodElement.className = "plate-food";
+        item.className = "plate-food";
 
-        foodElement.innerText = food.emoji;
+        item.innerText = food.emoji;
 
-        const position =
-            foodPositions[index % foodPositions.length];
+        item.title = food.name;
 
-        foodElement.style.left = position.left;
-        foodElement.style.top = position.top;
-
-        plate.appendChild(foodElement);
+        plate.appendChild(item);
 
     });
+
+}
+
+
+function showFoodMessage(message) {
+
+    const box =
+        document.getElementById("food-message");
+
+    if (!box) return;
+
+    box.innerText = message;
+
 }
 
 
@@ -169,12 +226,10 @@ function clearPlate() {
 
     renderPlate();
 
-    const result =
-        document.getElementById("churrasco-result");
+    showFoodMessage(
+        "🗑️ Plate cleared!"
+    );
 
-    if (result) {
-        result.classList.remove("show");
-    }
 }
 
 
@@ -182,36 +237,36 @@ function finishChurrasco() {
 
     if (selectedFoods.length === 0) {
 
-        alert(
-            "You need some food first! 😭\n\n" +
-            "Pick at least one thing for your churrasco."
+        showFoodMessage(
+            "👀 Você precisa escolher alguma coisa primeiro!"
         );
 
         return;
     }
 
 
-    const result =
-        document.getElementById("churrasco-result");
+    showFoodMessage(
+        "🔥 CHURRASCO CONCLUÍDO! Tá pronto! 🇧🇷"
+    );
 
-    if (result) {
-        result.classList.add("show");
 
-        result.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
-    }
+    createConfetti(25);
+
+
+    setTimeout(() => {
+
+        showScreen("balloons");
+
+    }, 1200);
 
 }
 
 
-/* =========================================
-   BALLOON GAME
-========================================= */
+/* ================================= */
+/* BALLOONS */
+/* ================================= */
 
 let balloonsPopped = 0;
-
 
 function popBalloon(balloon) {
 
@@ -220,185 +275,255 @@ function popBalloon(balloon) {
     }
 
 
-    balloon.classList.add("popped");
-
     balloonsPopped++;
 
 
-    const counter =
-        document.getElementById("balloon-count");
-
-    if (counter) {
-        counter.innerText = balloonsPopped;
-    }
+    balloon.classList.add("popped");
 
 
-    createPopEffect(balloon);
+    createPopEffect(
+        balloon.getBoundingClientRect()
+    );
+
+
+    updateBalloonCounter();
 
 
     if (balloonsPopped >= 10) {
 
         setTimeout(() => {
 
-            const complete =
-                document.getElementById("balloon-complete");
+            const completion =
+                document.getElementById(
+                    "balloon-complete"
+                );
 
-            if (complete) {
-                complete.classList.add("show");
-
-                complete.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                });
+            if (completion) {
+                completion.classList.remove("hidden");
             }
 
-        }, 400);
+            createConfetti(50);
+
+        }, 500);
 
     }
 
 }
 
 
-function createPopEffect(balloon) {
+function updateBalloonCounter() {
 
-    const rect =
-        balloon.getBoundingClientRect();
+    const counter =
+        document.getElementById(
+            "balloon-counter"
+        );
 
+    if (counter) {
 
-    const pop = document.createElement("div");
+        counter.innerText =
+            `${balloonsPopped} / 10`;
 
-    pop.innerText = "💥";
-
-    pop.style.position = "fixed";
-
-    pop.style.left =
-        `${rect.left + rect.width / 2}px`;
-
-    pop.style.top =
-        `${rect.top + rect.height / 2}px`;
-
-    pop.style.transform = "translate(-50%, -50%)";
-
-    pop.style.fontSize = "2rem";
-
-    pop.style.pointerEvents = "none";
-
-    pop.style.zIndex = "9999";
-
-    pop.style.animation =
-        "popEffect 0.5s ease forwards";
-
-
-    document.body.appendChild(pop);
-
-
-    setTimeout(() => {
-        pop.remove();
-    }, 500);
+    }
 
 }
 
 
-/* =========================================
-   HIDDEN MESSAGE
-========================================= */
+function createPopEffect(rect) {
+
+    const emojis = [
+        "💥",
+        "✨",
+        "🎉",
+        "⭐"
+    ];
+
+
+    for (let i = 0; i < 4; i++) {
+
+        const effect =
+            document.createElement("div");
+
+        effect.className =
+            "pop-effect";
+
+        effect.innerText =
+            emojis[
+                Math.floor(
+                    Math.random() *
+                    emojis.length
+                )
+            ];
+
+
+        effect.style.left =
+            `${rect.left + rect.width / 2}px`;
+
+        effect.style.top =
+            `${rect.top + rect.height / 2}px`;
+
+
+        effect.style.transform =
+            `translate(
+                ${(Math.random() - 0.5) * 80}px,
+                ${(Math.random() - 0.5) * 80}px
+            )`;
+
+
+        document.body.appendChild(effect);
+
+
+        setTimeout(() => {
+
+            effect.remove();
+
+        }, 800);
+
+    }
+
+}
+
+
+/* ================================= */
+/* LETTER */
+/* ================================= */
+
+function openLetter() {
+
+    const envelope =
+        document.getElementById(
+            "envelope"
+        );
+
+    const paper =
+        document.getElementById(
+            "letter-paper"
+        );
+
+    const envelopeText =
+        document.getElementById(
+            "envelope-text"
+        );
+
+
+    if (envelope) {
+        envelope.classList.add("open");
+    }
+
+
+    setTimeout(() => {
+
+        if (envelopeText) {
+            envelopeText.classList.add(
+                "hidden"
+            );
+        }
+
+        if (paper) {
+            paper.classList.remove(
+                "hidden"
+            );
+        }
+
+    }, 700);
+
+}
+
+
+/* ================================= */
+/* SECRET MESSAGE */
+/* ================================= */
+
+let secretFound = false;
 
 function findSecret() {
 
-    const button =
-        document.querySelector(".secret-button");
+    if (secretFound) return;
+
+    secretFound = true;
+
 
     const message =
-        document.getElementById("secret-message");
+        document.getElementById(
+            "secret-message"
+        );
 
 
-    if (button) {
-
-        button.style.transform =
-            "scale(0) rotate(360deg)";
-
-        button.style.opacity = "0";
-
+    if (message) {
+        message.classList.remove(
+            "hidden"
+        );
     }
 
 
-    setTimeout(() => {
+    createConfetti(25);
 
-        if (message) {
-            message.classList.add("show");
 
-            message.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-        }
+    const card =
+        document.querySelector(
+            ".secret-card"
+        );
 
-    }, 350);
+
+    if (card) {
+
+        card.animate(
+            [
+                {
+                    transform:
+                        "scale(1)"
+                },
+
+                {
+                    transform:
+                        "scale(1.05)"
+                },
+
+                {
+                    transform:
+                        "scale(1)"
+                }
+            ],
+
+            {
+                duration: 500
+            }
+        );
+
+    }
 
 }
 
 
-/* =========================================
-   MAKE A WISH
-========================================= */
-
-function makeWish() {
-
-    const button =
-        document.getElementById("wish-button");
-
-    const result =
-        document.getElementById("wish-result");
-
-
-    if (button) {
-
-        button.disabled = true;
-
-        button.style.transform =
-            "scale(1.6)";
-
-        button.style.boxShadow =
-            "0 0 100px rgba(255, 230, 120, 1)";
-
-    }
-
-
-    createWishStars();
-
-
-    setTimeout(() => {
-
-        if (result) {
-            result.classList.add("show");
-
-            result.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-        }
-
-    }, 1000);
-
-}
-
-
-/* =========================================
-   WISH STAR EFFECT
-========================================= */
+/* ================================= */
+/* WISH */
+/* ================================= */
 
 function createWishStars() {
 
-    for (let i = 0; i < 30; i++) {
+    const container =
+        document.getElementById(
+            "wish-stars"
+        );
+
+    if (!container) return;
+
+
+    container.innerHTML = "";
+
+
+    for (let i = 0; i < 70; i++) {
 
         const star =
             document.createElement("span");
 
+        star.className =
+            "wish-particle";
+
         star.innerText =
-            Math.random() > 0.5 ? "✨" : "⭐";
+            Math.random() > 0.7
+                ? "✦"
+                : "•";
 
-
-        star.style.position = "fixed";
 
         star.style.left =
             `${Math.random() * 100}%`;
@@ -407,72 +532,167 @@ function createWishStars() {
             `${Math.random() * 100}%`;
 
         star.style.fontSize =
-            `${Math.random() * 20 + 15}px`;
+            `${Math.random() * 15 + 5}px`;
 
-        star.style.pointerEvents =
-            "none";
-
-        star.style.zIndex =
-            "20";
-
-        star.style.animation =
-            "wishStar 1.5s ease forwards";
+        star.style.animationDelay =
+            `${Math.random() * 3}s`;
 
 
-        document.body.appendChild(star);
-
-
-        setTimeout(() => {
-            star.remove();
-        }, 1500);
+        container.appendChild(star);
 
     }
 
 }
 
 
-/* =========================================
-   FINAL CONFETTI
-========================================= */
+function makeWish() {
 
-function createConfetti() {
-
-    const container =
-        document.getElementById("confetti-container");
+    const screen =
+        document.getElementById(
+            "wish"
+        );
 
 
-    if (!container) {
-        return;
+    if (!screen) return;
+
+
+    screen.classList.add(
+        "wished"
+    );
+
+
+    createConfetti(80);
+
+
+    createWishExplosion();
+
+
+    setTimeout(() => {
+
+        showScreen("final");
+
+    }, 1500);
+
+}
+
+
+function createWishExplosion() {
+
+    for (let i = 0; i < 30; i++) {
+
+        const star =
+            document.createElement("div");
+
+        star.innerText = "✨";
+
+        star.style.position =
+            "fixed";
+
+        star.style.left =
+            "50%";
+
+        star.style.top =
+            "50%";
+
+        star.style.fontSize =
+            `${Math.random() * 25 + 10}px`;
+
+        star.style.zIndex =
+            "9999";
+
+        star.style.pointerEvents =
+            "none";
+
+
+        const angle =
+            Math.random() * Math.PI * 2;
+
+        const distance =
+            Math.random() * 400 + 100;
+
+
+        star.animate(
+            [
+                {
+                    transform:
+                        "translate(-50%, -50%) scale(0)",
+                    opacity: 1
+                },
+
+                {
+                    transform:
+                        `translate(
+                            ${Math.cos(angle) * distance}px,
+                            ${Math.sin(angle) * distance}px
+                        ) scale(1.5)`,
+
+                    opacity: 0
+                }
+            ],
+
+            {
+                duration:
+                    1000 + Math.random() * 500,
+
+                easing:
+                    "cubic-bezier(.2,.8,.2,1)"
+            }
+        );
+
+
+        document.body.appendChild(star);
+
+
+        setTimeout(() => {
+
+            star.remove();
+
+        }, 1600);
+
     }
 
+}
 
-    container.innerHTML = "";
+
+/* ================================= */
+/* CONFETTI */
+/* ================================= */
+
+function createConfetti(amount = 40) {
+
+    const container =
+        document.getElementById(
+            "confetti"
+        );
 
 
-    const confettiCharacters = [
+    if (!container) return;
+
+
+    const symbols = [
         "🎉",
         "✨",
         "❤️",
         "⭐",
-        "🎊",
-        "🔥",
-        "🇧🇷"
+        "🇧🇷",
+        "🎊"
     ];
 
 
-    for (let i = 0; i < 80; i++) {
+    for (let i = 0; i < amount; i++) {
 
         const piece =
             document.createElement("div");
 
-        piece.className = "confetti";
+        piece.className =
+            "confetti-piece";
 
 
         piece.innerText =
-            confettiCharacters[
+            symbols[
                 Math.floor(
                     Math.random() *
-                    confettiCharacters.length
+                    symbols.length
                 )
             ];
 
@@ -482,44 +702,47 @@ function createConfetti() {
 
 
         piece.style.fontSize =
-            `${Math.random() * 15 + 12}px`;
+            `${Math.random() * 15 + 10}px`;
+
+
+        piece.style.animationDuration =
+            `${Math.random() * 3 + 2}s`;
 
 
         piece.style.animationDelay =
-            `${Math.random() * 1.5}s`;
+            `${Math.random() * 0.5}s`;
 
 
         container.appendChild(piece);
+
+
+        setTimeout(() => {
+
+            piece.remove();
+
+        }, 6000);
 
     }
 
 }
 
 
-/* =========================================
-   FINAL SCREEN
-========================================= */
+/* ================================= */
+/* FINAL SCREEN */
+/* ================================= */
 
 function prepareFinalScreen() {
 
-    const finalFood =
-        document.getElementById("final-food");
+    const finalPlate =
+        document.getElementById(
+            "final-food-plate"
+        );
 
 
-    if (!finalFood) {
-        return;
-    }
+    if (!finalPlate) return;
 
 
-    if (selectedFoods.length === 0) {
-
-        finalFood.innerText = "🍽️";
-
-        return;
-    }
-
-
-    finalFood.innerHTML = "";
+    finalPlate.innerHTML = "";
 
 
     selectedFoods.forEach(food => {
@@ -530,16 +753,86 @@ function prepareFinalScreen() {
         item.innerText =
             food.emoji;
 
-        finalFood.appendChild(item);
+        item.title =
+            food.name;
+
+        finalPlate.appendChild(item);
 
     });
+
+
+    createConfetti(80);
 
 }
 
 
-/* =========================================
-   RESTART EVERYTHING
-========================================= */
+/* ================================= */
+/* BACKGROUND PARTICLES */
+/* ================================= */
+
+function createBackgroundParticles() {
+
+    const container =
+        document.getElementById(
+            "particles"
+        );
+
+
+    if (!container) return;
+
+
+    const symbols = [
+        "✨",
+        "❤️",
+        "⭐",
+        "🇧🇷"
+    ];
+
+
+    for (let i = 0; i < 25; i++) {
+
+        const particle =
+            document.createElement("span");
+
+        particle.className =
+            "particle";
+
+
+        particle.innerText =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        particle.style.left =
+            `${Math.random() * 100}%`;
+
+
+        particle.style.fontSize =
+            `${Math.random() * 15 + 8}px`;
+
+
+        particle.style.animationDuration =
+            `${Math.random() * 15 + 10}s`;
+
+
+        particle.style.animationDelay =
+            `${Math.random() * 10}s`;
+
+
+        container.appendChild(particle);
+
+    }
+
+}
+
+
+/* ================================= */
+/* RESTART */
+/* ================================= */
 
 function restartExperience() {
 
@@ -547,104 +840,111 @@ function restartExperience() {
 
     balloonsPopped = 0;
 
+    secretFound = false;
 
-    /* Reset plate */
 
     renderPlate();
 
-
-    /* Reset balloons */
-
-    const balloons =
-        document.querySelectorAll(".balloon");
+    updateBalloonCounter();
 
 
-    balloons.forEach(balloon => {
+    document
+        .querySelectorAll(".balloon")
+        .forEach(balloon => {
 
-        balloon.classList.remove("popped");
+            balloon.classList.remove(
+                "popped"
+            );
 
-    });
-
-
-    const counter =
-        document.getElementById("balloon-count");
-
-
-    if (counter) {
-        counter.innerText = "0";
-    }
+        });
 
 
-    /* Hide completion messages */
-
-    const churrascoResult =
-        document.getElementById("churrasco-result");
-
-
-    const balloonComplete =
-        document.getElementById("balloon-complete");
+    const completion =
+        document.getElementById(
+            "balloon-complete"
+        );
 
 
-    const secretMessage =
-        document.getElementById("secret-message");
+    if (completion) {
 
-
-    const wishResult =
-        document.getElementById("wish-result");
-
-
-    if (churrascoResult) {
-        churrascoResult.classList.remove("show");
-    }
-
-
-    if (balloonComplete) {
-        balloonComplete.classList.remove("show");
-    }
-
-
-    if (secretMessage) {
-        secretMessage.classList.remove("show");
-    }
-
-
-    if (wishResult) {
-        wishResult.classList.remove("show");
-    }
-
-
-    /* Reset secret button */
-
-    const secretButton =
-        document.querySelector(".secret-button");
-
-
-    if (secretButton) {
-
-        secretButton.style.transform =
-            "";
-
-        secretButton.style.opacity =
-            "1";
+        completion.classList.add(
+            "hidden"
+        );
 
     }
 
 
-    /* Reset wish button */
+    const secret =
+        document.getElementById(
+            "secret-message"
+        );
 
-    const wishButton =
-        document.getElementById("wish-button");
+
+    if (secret) {
+
+        secret.classList.add(
+            "hidden"
+        );
+
+    }
 
 
-    if (wishButton) {
+    const paper =
+        document.getElementById(
+            "letter-paper"
+        );
 
-        wishButton.disabled = false;
 
-        wishButton.style.transform =
-            "";
+    if (paper) {
 
-        wishButton.style.boxShadow =
-            "";
+        paper.classList.add(
+            "hidden"
+        );
+
+    }
+
+
+    const envelope =
+        document.getElementById(
+            "envelope"
+        );
+
+
+    if (envelope) {
+
+        envelope.classList.remove(
+            "open"
+        );
+
+    }
+
+
+    const envelopeText =
+        document.getElementById(
+            "envelope-text"
+        );
+
+
+    if (envelopeText) {
+
+        envelopeText.classList.remove(
+            "hidden"
+        );
+
+    }
+
+
+    const wish =
+        document.getElementById(
+            "wish"
+        );
+
+
+    if (wish) {
+
+        wish.classList.remove(
+            "wished"
+        );
 
     }
 
@@ -654,95 +954,19 @@ function restartExperience() {
 }
 
 
-/* =========================================
-   WHEN PAGE LOADS
-========================================= */
+/* ================================= */
+/* STARTUP */
+/* ================================= */
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
 
-    updateProgress("welcome");
+        createBackgroundParticles();
 
-    renderPlate();
+        renderPlate();
 
-});
-
-
-/* =========================================
-   SPECIAL ANIMATIONS
-========================================= */
-
-const animationStyles =
-document.createElement("style");
-
-
-animationStyles.innerHTML = `
-
-    @keyframes popEffect {
-
-        0% {
-            opacity: 1;
-            transform:
-                translate(-50%, -50%)
-                scale(0.5);
-        }
-
-        100% {
-            opacity: 0;
-            transform:
-                translate(-50%, -50%)
-                scale(2);
-        }
+        updateBalloonCounter();
 
     }
-
-
-    @keyframes wishStar {
-
-        0% {
-            opacity: 0;
-            transform: scale(0);
-        }
-
-        50% {
-            opacity: 1;
-            transform: scale(1.5);
-        }
-
-        100% {
-            opacity: 0;
-            transform:
-                scale(0.5)
-                translateY(-100px);
-        }
-
-    }
-
-`;
-
-
-document.head.appendChild(animationStyles);
-
-
-/* =========================================
-   WATCH FOR FINAL SCREEN
-========================================= */
-
-const originalShowScreen = showScreen;
-
-
-showScreen = function(screenId) {
-
-    originalShowScreen(screenId);
-
-
-    if (screenId === "final") {
-
-        prepareFinalScreen();
-
-        setTimeout(() => {
-            createConfetti();
-        }, 200);
-
-    }
-
-};
+);
