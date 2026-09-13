@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A Little Surprise ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================================
+         PROGRESS
+    ========================================== -->
+
+    <div class="progress-container">
+        <div class="progress">
+
+            <span id="progress-welcome">🎁</span>
+            <span>—</span>
+
+            <span id="progress-instructions">📖</span>
+            <span>—</span>
+
+            <span id="progress-churrasco">🔥</span>
+            <span>—</span>
+
+            <span id="progress-balloons">🎈</span>
+            <span>—</span>
+
+            <span id="progress-letter">💌</span>
+            <span>—</span>
+
+            <span id="progress-hidden">🔎</span>
+            <span>—</span>
+
+            <span id="progress-wish">🌟</span>
+
+        </div>
+    </div>
+
+
+    <!-- =========================================
+         WELCOME
+    ========================================== -->
+
+    <section id="welcome" class="screen active">
+
+        <div class="card">
+
+            <div class="big-icon">🎁</div>
+
+            <h1>A Little Surprise</h1>
+
+            <p>
+                I made something special for you.
+            </p>
+
+            <p class="small-text">
+                There's a little adventure waiting inside...
+            </p>
+
+            <button onclick="showScreen('instructions')">
+                Open Your Surprise ✨
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         INSTRUCTIONS
+    ========================================== -->
+
+    <section id="instructions" class="screen">
+
+        <div class="card">
+
+            <div class="big-icon">📖</div>
+
+            <h1>How This Works</h1>
+
+            <p>
+                Before you begin, here's what you'll be doing!
+            </p>
+
+
+            <div class="instructions">
+
+                <div class="instruction">
+                    <span>🔥</span>
+
+                    <div>
+                        <strong>Build Your Churrasco</strong>
+
+                        <p>
+                            Create your perfect Brazilian
+                            barbecue plate.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="instruction">
+                    <span>🎈</span>
+
+                    <div>
+                        <strong>Pop the Balloons</strong>
+
+                        <p>
+                            Pop all the balloons to move on.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="instruction">
+                    <span>💌</span>
+
+                    <div>
+                        <strong>Read Your Letter</strong>
+
+                        <p>
+                            There's a personal message waiting
+                            for you.
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="instruction">
+                    <span>🔎</span>
+
+                    <div>
+                        <strong>Find the Hidden Message</strong>
+
+                        <p>
+                            Something is hiding somewhere...
+                        </p>
+                    </div>
+                </div>
+
+
+                <div class="instruction">
+                    <span>🌟</span>
+
+                    <div>
+                        <strong>Make a Wish</strong>
+
+                        <p>
+                            Finish your little adventure
+                            with a wish.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <button onclick="showScreen('churrasco')">
+                I'm Ready! 🔥
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         CHURRASCO BUILDER
+    ========================================== -->
+
+    <section id="churrasco" class="screen">
+
+        <div class="card churrasco-card">
+
+            <div class="big-icon">🔥</div>
+
+            <h1>Build Your Churrasco</h1>
+
+            <p>
+                Put together your perfect Brazilian barbecue!
+            </p>
+
+
+            <!-- PLATE -->
+
+            <div class="plate-area">
+
+                <div id="plate" class="plate">
+
+                    <div class="plate-center">
+                        🍽️
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- MEATS -->
+
+            <div class="food-section">
+
+                <h2>🥩 Meats</h2>
+
+                <div class="food-choices">
+
+                    <button
+                        class="food-choice"
+                        onclick="addFood('🥩', 'Picanha')">
+
+                        🥩
+                        <span>Picanha</span>
+
+                    </button>
+
+
+                    <button
+                        class="food-choice"
+                        onclick="addFood('🥩', 'Fraldinha')">
+
+                        🥩
+                        <span>Fraldinha</span>
+
+                    </button>
+
+
+                    <button
+                        class="food-choice"
+                        onclick="addFood('🌭', 'Linguiça')">
+
+                        🌭
+                        <span>Linguiça</span>
+
+                    </button>
+
+
+                    <button
+                        class="food-choice"
+                        onclick="addFood('🍗', 'Frango')">
+
+                        🍗
+                        <span>Frango</span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- EXTRAS -->
+
+            <div class="food-section">
+
+                <h2>🧀 Extras</h2>
+
+                <div class="food-choices">
+
+                    <button
+                        class="food-choice"
+                        onclick="addFood('🧀', 'Queijo Coalho')">
+
+                        🧀
+                        <span>Queijo Coalho</span>
+
+                    </button>
+
+
+                    <button
+                        class="food-choice"
+                        onclick="addFood('🍞', 'Garlic Bread')">
+
+                        🍞
+                        <span>Garlic Bread</span>
+
+                    </button>
+
+
+                    <button
+                        class="food-choice"
+                        onclick="addFood('🍍', 'Grilled Pineapple')">
+
+                        🍍
+                        <span>Grilled Pineapple</span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- SIDES -->
+
+            <div class="food-section">
+
+                <h2>🍚 Sides</h2>
+
+                <div class="food-choices">
+
+                    <button
+                        class="food-choice"
+                        onclick="addFood('🍚', 'Rice')">
+
+                        🍚
+                        <span>Rice</span>
+
+                    </button>
+
+
+                    <button
+                        class="food-choice"
+                        onclick="addFood('🫘', 'Feijão')">
+
+                        🫘
+                        <span>Feijão</span>
+
+                    </button>
+
+
+                    <button
+                        class="food-choice"
+                        onclick="addFood('🥗', 'Vinagrete')">
+
+                        🥗
+                        <span>Vinagrete</span>
+
+                    </button>
+
+
+                    <button
+                        class="food-choice"
+                        onclick="addFood('🌾', 'Farofa')">
+
+                        🌾
+                        <span>Farofa</span>
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="churrasco-actions">
+
+                <button
+                    class="secondary-button"
+                    onclick="clearPlate()">
+
+                    Clear Plate
+
+                </button>
+
+
+                <button
+                    onclick="finishChurrasco()">
+
+                    Churrasco Complete! 🎈
+
+                </button>
+
+            </div>
+
+
+            <div id="churrasco-result" class="result-message">
+
+                <h2>🔥 THAT'S A PLATE!</h2>
+
+                <p>
+                    Now THAT looks like a proper churrasco.
+                </p>
+
+                <button onclick="showScreen('balloons')">
+                    Time for Balloons! 🎈
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         BALLOON GAME
+    ========================================== -->
+
+    <section id="balloons" class="screen">
+
+        <div class="card balloon-card">
+
+            <div class="big-icon">🎈</div>
+
+            <h1>Pop the Balloons!</h1>
+
+            <p>
+                Pop all 10 balloons to continue!
+            </p>
+
+
+            <div class="balloon-counter">
+
+                Popped:
+                <strong id="balloon-count">0</strong>
+                / 10
+
+            </div>
+
+
+            <div id="balloon-game">
+
+                <button class="balloon balloon-1"
+                    onclick="popBalloon(this)">
+                    🎈
+                </button>
+
+                <button class="balloon balloon-2"
+                    onclick="popBalloon(this)">
+                    🎈
+                </button>
+
+                <button class="balloon balloon-3"
+                    onclick="popBalloon(this)">
+                    🎈
+                </button>
+
+                <button class="balloon balloon-4"
+                    onclick="popBalloon(this)">
+                    🎈
+                </button>
+
+                <button class="balloon balloon-5"
+                    onclick="popBalloon(this)">
+                    🎈
+                </button>
+
+                <button class="balloon balloon-6"
+                    onclick="popBalloon(this)">
+                    🎈
+                </button>
+
+                <button class="balloon balloon-7"
+                    onclick="popBalloon(this)">
+                    🎈
+                </button>
+
+                <button class="balloon balloon-8"
+                    onclick="popBalloon(this)">
+                    🎈
+                </button>
+
+                <button class="balloon balloon-9"
+                    onclick="popBalloon(this)">
+                    🎈
+                </button>
+
+                <button class="balloon balloon-10"
+                    onclick="popBalloon(this)">
+                    🎈
+                </button>
+
+            </div>
+
+
+            <div id="balloon-complete" class="result-message">
+
+                <h2>🎉 YOU DID IT!</h2>
+
+                <p>
+                    You popped every single balloon!
+                </p>
+
+                <button onclick="showScreen('letter')">
+                    I Have Something For You 💌
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         LETTER
+    ========================================== -->
+
+    <section id="letter" class="screen">
+
+        <div class="card letter-card">
+
+            <div class="big-icon">💌</div>
+
+            <h1>A Letter For You</h1>
+
+
+            <div class="letter">
+
+                <p>Dear You,</p>
+
+
+                <p>
+                    I wanted to make something a little different
+                    for you instead of just sending a normal message.
+                </p>
+
+
+                <p>
+                    You mean a lot to me, and I hope this little
+                    surprise makes you smile.
+                </p>
+
+
+                <p>
+                    Thank you for being you. ❤️
+                </p>
+
+
+                <p>
+                    I hope you know how appreciated you are.
+                </p>
+
+
+                <p class="signature">
+                    — Chase ❤️
+                </p>
+
+            </div>
+
+
+            <button onclick="showScreen('hidden')">
+                There's More... 👀
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         HIDDEN MESSAGE
+    ========================================== -->
+
+    <section id="hidden" class="screen">
+
+        <div class="card hidden-card">
+
+            <div class="big-icon">🔎</div>
+
+            <h1>Something Is Hidden...</h1>
+
+            <p>
+                There's a secret message somewhere on this page.
+            </p>
+
+            <p class="small-text">
+                Look carefully. 👀
+            </p>
+
+
+            <div class="hidden-area">
+
+                <span class="decoration">✨</span>
+
+                <span class="decoration">🌸</span>
+
+                <span class="decoration">⭐</span>
+
+
+                <button
+                    class="secret-button"
+                    onclick="findSecret()">
+
+                    💖
+
+                </button>
+
+
+                <span class="decoration">🎀</span>
+
+                <span class="decoration">✨</span>
+
+            </div>
+
+
+            <div id="secret-message" class="secret-message">
+
+                <h2>You Found It! 💖</h2>
+
+                <p>
+                    You're pretty awesome, you know that?
+                </p>
+
+                <p>
+                    I hope you never forget how much you mean
+                    to the people who care about you.
+                </p>
+
+
+                <button onclick="showScreen('wish')">
+                    Continue to the Final Surprise 🌟
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         MAKE A WISH
+    ========================================== -->
+
+    <section id="wish" class="screen wish-screen">
+
+        <div class="stars">
+
+            <span>✦</span>
+            <span>✧</span>
+            <span>✦</span>
+            <span>✧</span>
+            <span>✦</span>
+            <span>✧</span>
+            <span>✦</span>
+            <span>✧</span>
+
+        </div>
+
+
+        <div class="card wish-card">
+
+            <div class="big-icon">🌟</div>
+
+            <h1>Make a Wish</h1>
+
+            <p>
+                Close your eyes for a moment.
+            </p>
+
+            <p>
+                Think of something you really want.
+            </p>
+
+            <p class="small-text">
+                When you're ready, click the star.
+            </p>
+
+
+            <button
+                id="wish-button"
+                class="wish-button"
+                onclick="makeWish()">
+
+                ⭐
+
+            </button>
+
+
+            <div id="wish-result">
+
+                <h2>✨ I Hope It Comes True ✨</h2>
+
+                <p>
+                    Whatever you wished for,
+                    I hope it comes true.
+                </p>
+
+
+                <button onclick="showScreen('final')">
+                    One Last Thing... 🎁
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         FINAL SURPRISE
+    ========================================== -->
+
+    <section id="final" class="screen final-screen">
+
+        <div id="confetti-container"></div>
+
+
+        <div class="card">
+
+            <div class="big-icon">🎉</div>
+
+            <h1>You Made It!</h1>
+
+            <p>
+                And look at that beautiful churrasco! 🔥
+            </p>
+
+
+            <div class="final-plate">
+
+                <div id="final-food">
+                    🍽️
+                </div>
+
+            </div>
+
+
+            <h2>❤️ I Hope You Had Fun ❤️</h2>
+
+
+            <p>
+                I hope this little surprise made your day
+                just a little brighter.
+            </p>
+
+
+            <p class="small-text">
+                You deserve all the happiness in the world.
+            </p>
+
+
+            <button onclick="restartExperience()">
+                Experience It Again 🔄
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================== -->
+
+    <script src="script.js"></script>
+
+</body>
+</html>
